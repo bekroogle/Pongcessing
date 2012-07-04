@@ -6,6 +6,12 @@
  
 void setup() {
   size(W, H);
+  player = new Paddle(Paddle.X_OFFSET, (H - Paddle.HEIGHT) / 2,
+                      Paddle.WIDTH, Paddle.HEIGHT);
+
+  machine = new Paddle(W - (Paddle.WIDTH + Paddle.X_OFFSET),
+                            (H - Paddle.HEIGHT) / 2,
+                            Paddle.WIDTH, Paddle.HEIGHT); 
 }
 
 void splashScreen() {
@@ -17,7 +23,8 @@ void splashScreen() {
 void draw() {
   fill(255,255,255,255);
   drawBackground();
-
+  player.display();
+  machine.display();
   splashScreen();
 
 }
@@ -26,10 +33,10 @@ void drawBackground() {
   background(0,0,0);  
 }
 
-private GameObject r;
+private Paddle player;
+private Paddle machine;
 
 private static final int W = 800;
 private static final int H = 400;
-private static final float PADDLE_HEIGHT = 40.f;
-private static final float PADDLE_WIDTH = 20.f;
+
 
