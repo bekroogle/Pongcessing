@@ -14,10 +14,13 @@ void setup() {
                             Paddle.WIDTH, Paddle.HEIGHT);
   b = new Ball((W + Ball.DIAMETER) / 2, (H + Ball.DIAMETER) / 2,
                 Ball.DIAMETER, Ball.DIAMETER); 
+  paused = true;
+  pPressed = false;
+  pLastFrame = false;
 }
 
 void splashScreen() {
-  fill(50,0,0,127);
+  rect(50,0,0,255);
 
   
 }
@@ -26,13 +29,14 @@ void draw() {
   fill(255,255,255,255);
   drawBackground();
   
-  update();
-  
   player.display();
   machine.display();
   b.display();
-  splashScreen();
-
+  if (!paused) {
+    update();
+  } else {  
+    splashScreen();
+  }
 }
 
 void update() {
@@ -45,8 +49,36 @@ void drawBackground() {
   background(0,0,0);  
 }
 
+void keyPressed() {
+  if (key == 'p') {
+    pPressed = true;
+    print('p');
+    togglePause();
+  }
+}  
+
+//void keyReleased() {
+//  if (key == 'p') {
+//    if (pPressed) {
+//      togglePause();
+//    }  
+//  pPressed = false;
+//  }
+//}
+
+void togglePause() {
+  if (paused) {
+    paused = false;
+  } else {
+    paused = true;
+  }
+}
+
 private Paddle player, machine;
 private Ball b;
+private boolean pPressed;
+private boolean pLastFrame;
+private boolean paused;
 
 private static final int W = 800;
 private static final int H = 400;
