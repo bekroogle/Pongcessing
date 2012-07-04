@@ -15,6 +15,8 @@ void setup() {
   b = new Ball((W + Ball.DIAMETER) / 2, (H + Ball.DIAMETER) / 2,
                 Ball.DIAMETER, Ball.DIAMETER); 
   paused = true;
+  playersPoints = 0;
+  machinesPoints = 0;
 
 }
 
@@ -42,6 +44,19 @@ void update() {
   b.update();
   player.update();
 //  machine.update();
+
+  if (b.getPos().x >= width) {
+    playersPoints++;
+    b = new Ball((W + Ball.DIAMETER) / 2, (H + Ball.DIAMETER) / 2,
+                Ball.DIAMETER, Ball.DIAMETER); 
+    paused = true;
+  } else if (b.getPos().x <= 0) {
+    machinesPoints++;
+    b = new Ball((W + Ball.DIAMETER) / 2, (H + Ball.DIAMETER) / 2,
+                Ball.DIAMETER, Ball.DIAMETER); 
+    paused = true;
+  }
+  
 }
 
 void drawBackground() {
@@ -65,6 +80,9 @@ void togglePause() {
 
 private Paddle player, machine;
 private Ball b;
+
+private int playersPoints, machinesPoints;
+
 private boolean paused;
 
 private static final int W = 800;
