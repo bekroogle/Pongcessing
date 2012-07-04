@@ -5,16 +5,25 @@
  */
  
 void setup() {
-    size(WIDTH, HEIGHT);
-    splashScreen();
+    size(W, H);
 }
 
 void splashScreen() {
+    rect(0,0,W-1,H-1);
 }
 
 void draw() {
-
+  drawBackground();
+  splashScreen();
+  rect(0,0,PADDLE_WIDTH, PADDLE_HEIGHT);
 }
 
-private static final int WIDTH = 800;
-private static final int HEIGHT = 400;
+void drawBackground() {
+  background(0,0,0);  
+}
+
+private static final int W = 800;
+private static final int H = 400;
+private static final float PADDLE_HEIGHT = 40.f;
+private static final float PADDLE_WIDTH = 20.f;
+
