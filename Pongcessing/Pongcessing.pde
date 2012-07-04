@@ -65,8 +65,6 @@ void togglePause() {
 
 private Paddle player, machine;
 private Ball b;
-private boolean pPressed;
-private boolean pLastFrame;
 private boolean paused;
 
 private static final int W = 800;
