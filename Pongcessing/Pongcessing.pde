@@ -5,22 +5,28 @@
  */
  
 void setup() {
-    size(W, H);
+  size(W, H);
 }
 
 void splashScreen() {
-    rect(0,0,W-1,H-1);
+  fill(50,0,0,127);
+
+  
 }
 
 void draw() {
+  fill(255,255,255,255);
   drawBackground();
+
   splashScreen();
-  rect(0,0,PADDLE_WIDTH, PADDLE_HEIGHT);
+
 }
 
 void drawBackground() {
   background(0,0,0);  
 }
+
+private GameObject r;
 
 private static final int W = 800;
 private static final int H = 400;
