@@ -25,11 +25,20 @@ void splashScreen() {
 void draw() {
   fill(255,255,255,255);
   drawBackground();
+  
+  update();
+  
   player.display();
   machine.display();
   b.display();
   splashScreen();
 
+}
+
+void update() {
+  b.update();
+  player.update();
+//  machine.update();
 }
 
 void drawBackground() {
