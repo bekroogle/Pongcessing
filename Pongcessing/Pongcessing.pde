@@ -6,13 +6,16 @@
  
 void setup() {
   size(W, H);
+  noStroke();
+  smooth();
+  
   player = new Paddle(Paddle.X_OFFSET, (H - Paddle.HEIGHT) / 2,
                       Paddle.WIDTH, Paddle.HEIGHT);
 
   machine = new Paddle(W - (Paddle.WIDTH + Paddle.X_OFFSET),
                             (H - Paddle.HEIGHT) / 2,
                             Paddle.WIDTH, Paddle.HEIGHT);
-  b = new Ball((W + Ball.DIAMETER) / 2, (H + Ball.DIAMETER) / 2,
+  b = new Ball((W) / 2, (H) / 2,
                 Ball.DIAMETER, Ball.DIAMETER); 
   paused = true;
   playersPoints = 0;
@@ -20,14 +23,16 @@ void setup() {
 
 }
 
-void splashScreen() {
-  rect(50,0,0,255);
-
+void pauseScreen() {
+  fill(255,255,255,64);
+  rect(OVERLAY_MARGIN, OVERLAY_MARGIN, 
+        width - (OVERLAY_MARGIN * 2),
+        height - (OVERLAY_MARGIN * 2));
   
 }
 
 void draw() {
-  fill(255,255,255,255);
+  fill(0,255,0,255);
   drawBackground();
   
   player.display();
@@ -36,7 +41,7 @@ void draw() {
   if (!paused) {
     update();
   } else {  
-    splashScreen();
+    pauseScreen();
   }
 }
 
@@ -47,12 +52,12 @@ void update() {
 
   if (b.getPos().x >= width) {
     playersPoints++;
-    b = new Ball((W + Ball.DIAMETER) / 2, (H + Ball.DIAMETER) / 2,
+    b = new Ball((W) / 2, (H) / 2,
                 Ball.DIAMETER, Ball.DIAMETER); 
     paused = true;
   } else if (b.getPos().x <= 0) {
     machinesPoints++;
-    b = new Ball((W + Ball.DIAMETER) / 2, (H + Ball.DIAMETER) / 2,
+    b = new Ball(W / 2, (H + Ball.DIAMETER) / 2,
                 Ball.DIAMETER, Ball.DIAMETER); 
     paused = true;
   }
@@ -60,7 +65,13 @@ void update() {
 }
 
 void drawBackground() {
-  background(0,0,0);  
+  background(0,0,0);
+  stroke(0,255,0); 
+  noFill();
+  ellipse((width)/2, (height)/2, 200, 200);
+  line(width/2, 0, width/2, height);
+  fill(0,255,0);
+  noStroke(); 
 }
 
 void keyPressed() {
@@ -87,5 +98,5 @@ private boolean paused;
 
 private static final int W = 800;
 private static final int H = 400;
-
+private static final int OVERLAY_MARGIN = 10;
 
