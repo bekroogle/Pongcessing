@@ -11,7 +11,9 @@ void setup() {
 
   machine = new Paddle(W - (Paddle.WIDTH + Paddle.X_OFFSET),
                             (H - Paddle.HEIGHT) / 2,
-                            Paddle.WIDTH, Paddle.HEIGHT); 
+                            Paddle.WIDTH, Paddle.HEIGHT);
+  b = new Ball((W + Ball.DIAMETER) / 2, (H + Ball.DIAMETER) / 2,
+                Ball.DIAMETER, Ball.DIAMETER); 
 }
 
 void splashScreen() {
@@ -25,6 +27,7 @@ void draw() {
   drawBackground();
   player.display();
   machine.display();
+  b.display();
   splashScreen();
 
 }
@@ -33,8 +36,8 @@ void drawBackground() {
   background(0,0,0);  
 }
 
-private Paddle player;
-private Paddle machine;
+private Paddle player, machine;
+private Ball b;
 
 private static final int W = 800;
 private static final int H = 400;
